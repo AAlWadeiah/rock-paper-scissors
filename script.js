@@ -64,13 +64,20 @@ function playRound(humanChoice, computerChoice) {
   else if (winner === "cpu") computerScore++;
 }
 
+function playGame(numOfRounds = 5) {
+  for (let i = 0; i < numOfRounds; i++) {
+    playRound(getHumanChoice(), getComputerChoice());
+  }
+  let scoreString = `Human: ${humanScore}, Computer: ${computerScore}`;
+  console.log(scoreString);
+}
+
 let humanScore = 0;
 let computerScore = 0;
 
-playRound(getHumanChoice(), getComputerChoice());
+playGame(3);
 
-let scoreString = `Human: ${humanScore}, Computer: ${computerScore}`;
-console.log(scoreString);
+// playRound(getHumanChoice(), getComputerChoice());
 
 // console.log(getComputerChoice());
 // console.log(getHumanChoice());
