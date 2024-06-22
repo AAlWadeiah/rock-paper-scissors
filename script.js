@@ -23,5 +23,54 @@ function getHumanChoice() {
   return choice;
 }
 
+function playRound(humanChoice, computerChoice) {
+  let winner;
+  if (humanChoice === "rock") {
+    if (computerChoice === "scissors") {
+      winner = "human";
+      console.log("You win! Rock beats scissors");
+    } else if (computerChoice === "paper") {
+      winner = "cpu";
+      console.log("You lose! Paper beats rock");
+    } else {
+      winner = "tie";
+      console.log("Tie!");
+    }
+  } else if (humanChoice === "paper") {
+    if (computerChoice === "scissors") {
+      winner = "cpu";
+      console.log("You lose! Scissors beats paper");
+    } else if (computerChoice === "rock") {
+      winner = "human";
+      console.log("You win! Paper beats rock");
+    } else {
+      winner = "tie";
+      console.log("Tie!");
+    }
+  } else {
+    if (computerChoice === "paper") {
+      winner = "human";
+      console.log("You win! Scissors beats paper");
+    } else if (computerChoice === "rock") {
+      winner = "cpu";
+      console.log("You lose! Rock beats scissors");
+    } else {
+      winner = "tie";
+      console.log("Tie!");
+    }
+  }
+
+  if (winner === "human") humanScore++;
+  else if (winner === "cpu") computerScore++;
+}
+
+let humanScore = 0;
+let computerScore = 0;
+
+playRound(getHumanChoice(), getComputerChoice());
+
+let scoreString = `Human: ${humanScore}, Computer: ${computerScore}`;
+console.log(scoreString);
+
 // console.log(getComputerChoice());
 // console.log(getHumanChoice());
