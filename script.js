@@ -75,7 +75,7 @@ function playGame(numOfRounds = 5) {
 let humanScore = 0;
 let computerScore = 0;
 
-playGame(3);
+// playGame(3);
 
 // playRound(getHumanChoice(), getComputerChoice());
 
