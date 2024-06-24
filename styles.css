@@ -42,3 +42,15 @@ body{
     padding: 16px;
     background-color: #f4f4f4;
 }
+
+.winner-banner {
+    font-size: 30px;
+    font-weight: 700;
+    animation: color-change 1s infinite;    
+}
+
+@keyframes color-change {
+    0% { color: red; }
+    50% { color: blue; }
+    100% { color: red; }
+}

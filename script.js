@@ -59,6 +59,7 @@ function playRound(humanChoice, computerChoice) {
       console.log("Tie!");
     }
   }
+  totalRounds++;
   return winner;
 }
 
@@ -82,8 +83,19 @@ function playGame(numOfRounds = 5) {
   console.log(scoreString);
 }
 
+function resetGameScreen() {
+  humanScore = 0;
+  computerScore = 0;
+  let humanScoreCard = document.querySelector("#human-score");
+  humanScoreCard.innerText = `Human: 0`;
+  let cpuScoreCard = document.querySelector("#cpu-score");
+  cpuScoreCard.innerText = `Computer: 0`;
+  totalRounds = 0;
+}
+
 let humanScore = 0;
 let computerScore = 0;
+let totalRounds = 0;
 
 // playGame(3);
 
@@ -106,6 +118,22 @@ function gameButtonClickHandler(e) {
     case "scissors-btn":
       updateScore(playRound("scissors", getComputerChoice()));
       break;
+  }
+  if (totalRounds > 4) {
+    let victoryText =
+      humanScore > computerScore
+        ? "You won! Humanity prevails once again! 💪"
+        : computerScore > humanScore
+        ? "The computer won 🤖 The Matrix is one step closer to controlling humanity!"
+        : "Its a tie 🤷 The battle for humanity continues";
+    let body = document.querySelector("body");
+    let winnerBanner = document.createElement("h1");
+    winnerBanner.classList.toggle("winner-banner");
+    winnerBanner.innerText = victoryText;
+    body.appendChild(winnerBanner);
+
+    // reset game screen to start over
+    resetGameScreen();
   }
 }
 
