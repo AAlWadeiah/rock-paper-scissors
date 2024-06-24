@@ -10,18 +10,6 @@ function getComputerChoice() {
       return "scissors";
   }
 }
-// TODO: obselete function. Delete after done project
-// function getHumanChoice() {
-//   let choice;
-//   do {
-//     choice = prompt(
-//       "Make a choice: rock, paper, scissors",
-//       "rock"
-//     ).toLowerCase();
-//   } while (choice !== "rock" && choice !== "paper" && choice !== "scissors");
-
-//   return choice;
-// }
 
 function playRound(humanChoice, computerChoice) {
   let winner;
@@ -75,6 +63,7 @@ function updateScore(roundWinner) {
   }
 }
 
+// TODO: add input field to allow user to select total number of rounds and add event handler
 function playGame(numOfRounds = 5) {
   for (let i = 0; i < numOfRounds; i++) {
     playRound(getHumanChoice(), getComputerChoice());
@@ -97,14 +86,7 @@ let humanScore = 0;
 let computerScore = 0;
 let totalRounds = 0;
 
-// playGame(3);
-
-// playRound(getHumanChoice(), getComputerChoice());
-
-// console.log(getComputerChoice());
-// console.log(getHumanChoice());
-
-// create new function to handle button click events for all three game buttons
+// handles button click events for all three game buttons
 // when user clicks button, get the value based on the button ID and return that in the choice variable
 function gameButtonClickHandler(e) {
   let target = e.target;
@@ -124,8 +106,8 @@ function gameButtonClickHandler(e) {
       humanScore > computerScore
         ? "You won! Humanity prevails once again! 💪"
         : computerScore > humanScore
-        ? "The computer won 🤖 The Matrix is one step closer to controlling humanity!"
-        : "Its a tie 🤷 The battle for humanity continues";
+        ? "Computer won 🤖 The Matrix is one step closer to controlling humanity!"
+        : "A tie 🤷 The battle for humanity continues.";
     let body = document.querySelector("body");
     let winnerBanner = document.createElement("h1");
     winnerBanner.classList.toggle("winner-banner");
