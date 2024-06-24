@@ -10,18 +10,18 @@ function getComputerChoice() {
       return "scissors";
   }
 }
+// TODO: obselete function. Delete after done project
+// function getHumanChoice() {
+//   let choice;
+//   do {
+//     choice = prompt(
+//       "Make a choice: rock, paper, scissors",
+//       "rock"
+//     ).toLowerCase();
+//   } while (choice !== "rock" && choice !== "paper" && choice !== "scissors");
 
-function getHumanChoice() {
-  let choice;
-  do {
-    choice = prompt(
-      "Make a choice: rock, paper, scissors",
-      "rock"
-    ).toLowerCase();
-  } while (choice !== "rock" && choice !== "paper" && choice !== "scissors");
-
-  return choice;
-}
+//   return choice;
+// }
 
 function playRound(humanChoice, computerChoice) {
   let winner;
@@ -59,9 +59,19 @@ function playRound(humanChoice, computerChoice) {
       console.log("Tie!");
     }
   }
+  return winner;
+}
 
-  if (winner === "human") humanScore++;
-  else if (winner === "cpu") computerScore++;
+function updateScore(roundWinner) {
+  if (roundWinner === "human") {
+    humanScore++;
+    let humanScoreCard = document.querySelector("#human-score");
+    humanScoreCard.innerText = `Human: ${humanScore}`;
+  } else if (roundWinner === "cpu") {
+    computerScore++;
+    let cpuScoreCard = document.querySelector("#cpu-score");
+    cpuScoreCard.innerText = `Computer: ${computerScore}`;
+  }
 }
 
 function playGame(numOfRounds = 5) {
@@ -81,3 +91,24 @@ let computerScore = 0;
 
 // console.log(getComputerChoice());
 // console.log(getHumanChoice());
+
+// create new function to handle button click events for all three game buttons
+// when user clicks button, get the value based on the button ID and return that in the choice variable
+function gameButtonClickHandler(e) {
+  let target = e.target;
+  switch (target.id) {
+    case "rock-btn":
+      updateScore(playRound("rock", getComputerChoice()));
+      break;
+    case "paper-btn":
+      updateScore(playRound("paper", getComputerChoice()));
+      break;
+    case "scissors-btn":
+      updateScore(playRound("scissors", getComputerChoice()));
+      break;
+  }
+}
+
+let buttonContainer = document.querySelector(".btn-container");
+
+buttonContainer.addEventListener("click", gameButtonClickHandler);
